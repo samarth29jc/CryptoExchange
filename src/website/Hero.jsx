@@ -123,15 +123,15 @@ const Hero = () => {
             <div className="website-stat-label">Billion+ Volume</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="53" data-suffix="M">0</div>
-            <div className="website-stat-label">Million+ Users</div>
+            <div className="website-stat-number" data-target="53" data-suffix="K">0</div>
+            <div className="website-stat-label">Thousand+ Users</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="41">0</div>
+            <div className="website-stat-number" data-target="59">0</div>
             <div className="website-stat-label">Countries</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="100" data-suffix="%">0</div>
+            <div className="website-stat-number" data-target="99" data-suffix="%">0</div>
             <div className="website-stat-label">% Uptime</div>
           </div>
         </div>
