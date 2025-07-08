@@ -146,6 +146,10 @@ const Security = () => {
                   <div className="website-metric-value">0</div>
                   <div className="website-metric-label">Security Breaches</div>
                 </div>
+                <div className="website-metric">
+                  <div className="website-metric-value">24/7</div>
+                  <div className="website-metric-label">Monitoring</div>
+                </div>
               </div>
               <div className="website-security-status">
                 <div className="website-status-indicator website-active"></div>

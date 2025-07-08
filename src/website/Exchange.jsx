@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, Activity } from 'lucide-react';
 import image from "../../public/chartImg.png"
 
 const Exchange = () => {
+  const sectionRef = useRef();
+  const [visible, setVisible] = useState(false);
+  const [colVisible, setColVisible] = useState([false, false]);
+
   const [activeTab, setActiveTab] = useState('spot');
 
   const cryptoData = [
@@ -13,8 +17,35 @@ const Exchange = () => {
     { symbol: 'SOL', name: 'Solana', price: '158.40', change: '+8.2%', volume: '680M', positive: true },
   ];
 
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !visible) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  useEffect(() => {
+    if (visible) {
+      [0, 1].forEach((i) => {
+        setTimeout(() => {
+          setColVisible(prev => {
+            const updated = [...prev];
+            updated[i] = true;
+            return updated;
+          });
+        }, i * 200);
+      });
+    }
+  }, [visible]);
+
   return (
-    <section id="exchange" className="website-exchange">
+    <section id="exchange" className="website-exchange" ref={sectionRef}>
       <div className="website-container">
         <div className="website-section-header">
           <h2 className="website-section-title">Advanced Trading Platform</h2>
@@ -24,7 +55,7 @@ const Exchange = () => {
         </div>
 
         <div className="website-exchange-platform">
-          <div className="website-platform-sidebar">
+          <div className={`website-platform-sidebar section-fade-in${colVisible[0] ? ' visible' : ''}`}>
             <div className="website-tab-group">
               <button 
                 className={`website-tab ${activeTab === 'spot' ? 'website-active' : ''}`}
@@ -66,7 +97,7 @@ const Exchange = () => {
             </div>
           </div>
 
-          <div className="website-platform-main">
+          <div className={`website-platform-main section-fade-in${colVisible[1] ? ' visible' : ''}`}>
             <div className="website-chart-section">
               <div className="website-chart-header">
                 <h3>BTC/USD</h3>

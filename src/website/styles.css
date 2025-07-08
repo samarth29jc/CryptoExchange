@@ -314,7 +314,7 @@ p {
   background: white;
   border-radius: 16px;
   padding: clamp(16px, 3vw, 24px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* subtle, flat shadow */
   border: 1px solid rgba(229, 231, 235, 0.5);
   width: 100%;
   max-width: 400px;
@@ -376,7 +376,7 @@ p {
   align-items: center;
   justify-content: center;
 }
-
+/* 
 .website-chart-placeholder::before {
   content: '';
   position: absolute;
@@ -395,7 +395,7 @@ p {
   100% {
     left: 100%;
   }
-}
+} */
 
 .website-trading-actions {
   display: flex;
@@ -446,6 +446,7 @@ p {
 }
 
 .website-stat-number {
+  align-items: center;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   color: #2563eb;
@@ -453,7 +454,7 @@ p {
 }
 
 .website-stat-label {
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
   color: #6b7280;
   font-weight: 500;
 }
@@ -518,7 +519,7 @@ p {
 /* Exchange Styles */
 .website-exchange {
   padding: clamp(60px, 10vw, 80px) 0;
-  background: white;
+  background: #f8fafc;
 }
 
 .website-exchange-platform {
@@ -535,6 +536,7 @@ p {
   background: white;
   border-radius: 12px;
   padding: clamp(16px, 3vw, 24px);
+  margin-top: 18px;
   
 }
 
@@ -629,6 +631,7 @@ p {
   border-radius: 12px;
   padding: clamp(16px, 3vw, 24px);
   display: table;
+  margin-top: 18px;
 }
 
 .website-chart-header {
@@ -680,6 +683,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 3vw, 24px);
+  margin-top: 18px;
 }
 
 .website-order-book {
@@ -1350,6 +1354,33 @@ p {
   font-size: clamp(0.75rem, 1.5vw, 0.875rem);
 }
 
+.website-footer-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 271px) {
+  .website-footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 64px;
+  }
+  .website-footer-columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 64px;
+    margin-left: auto;
+    text-align: left;
+  }
+  .website-footer-section {
+    flex: 1 1 0;
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -1594,6 +1625,8 @@ p {
 @media (max-width: 480px) {
   .website-container {
     padding: 0 clamp(8px, 2vw, 16px);
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
   .website-hero {
@@ -1703,6 +1736,8 @@ p {
 @media (max-width: 270px) {
   .website-container {
     padding: 10px 8px 0px 8px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
   .website-hero {
@@ -1883,5 +1918,86 @@ p {
   to {
     transform: translateY(-60px) scale(0.7) rotate(360deg);
     opacity: 0;
+  }
+}
+
+/* Fade in and Fade out animation for features page */
+.section-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+}
+.section-fade.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 2s cubic-bezier(.4,0,.2,1), transform 2s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+}
+.section-fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.footer-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-modal {
+  background: #18181b;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 280px;
+  max-width: 90vw;
+  width: 45vw;
+  text-align: center;
+  position: relative;
+  animation: fadeInModal 0.2s;
+}
+.footer-modal h3 {
+  margin-bottom: 18px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.footer-modal p {
+  font-size: 1.05rem;
+  margin: 0;
+}
+.footer-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-modal-close:hover {
+  opacity: 1;
+}
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 700px) {
+  .footer-modal {
+    width: 90vw;
+    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
   }
 }
