@@ -19,7 +19,7 @@ const Header = () => {
         <div className="website-header-content">
           <div className="website-logo">
             <TrendingUp className="website-logo-icon" />
-            <span className="website-logo-text">AxiPays</span>
+            <span className="website-logo-text">Bitqilo</span>
           </div>
           
           <nav className={`website-nav ${isMenuOpen ? 'website-nav-open' : ''}`}>

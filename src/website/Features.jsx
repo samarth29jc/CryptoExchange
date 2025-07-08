@@ -39,7 +39,7 @@ const Features = () => {
     <section id="features" className="website-features">
       <div className="website-container">
         <div className="website-section-header">
-          <h2 className="website-section-title">Why Choose AxiPays?</h2>
+          <h2 className="website-section-title">Why Choose Bitqilo?</h2>
           <p className="website-section-subtitle">
             Built for traders, by traders. Experience the difference with our cutting-edge platform.
           </p>

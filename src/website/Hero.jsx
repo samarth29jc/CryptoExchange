@@ -6,11 +6,41 @@ const Hero = () => {
   const statsRef = useRef(null);
 
   useEffect(() => {
+    // for animation of counting
+    const statNumbers = document.querySelectorAll('.website-stat-number');
+    let animated = false;
+
+    function animateCount(el, target, decimals = 0, suffix = '') {
+      let start = 0;
+      const duration = 1500;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = start + (target - start) * progress;
+        el.textContent = value.toFixed(decimals) + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toFixed(decimals) + suffix;
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('website-animate-counter');
+          //for counting animation
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            statNumbers.forEach(el => {
+              const target = parseFloat(el.getAttribute('data-target'));
+              const decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+              const suffix = el.getAttribute('data-suffix') || '';
+              animateCount(el, target, decimals, suffix);
+            });
           }
         });
       },
@@ -36,7 +66,7 @@ const Hero = () => {
               Starts Here
             </h1>
             <p className="website-hero-description">
-              Experience next-generation crypto trading with AxiPays. 
+              Experience next-generation crypto trading with Bitqilo. 
               Secure, fast, and intuitive platform trusted by millions of traders worldwide.
             </p>
             
@@ -76,7 +106,7 @@ const Hero = () => {
                   <span className="website-change website-positive">+5.2%</span>
                 </div>
                 <div className="website-chart-placeholder">
-                  <img src={smallchart} alt='chart image stonks' width={350} height={150} zoom="300"></img>
+                  <img className="chart-stonks" src={smallchart} alt='chart image stonks' width={350}></img>
                 </div>
                 <div className="website-trading-actions">
                   <button className="website-trade-btn website-buy">Buy</button>
@@ -89,19 +119,19 @@ const Hero = () => {
 
         <div className="website-hero-stats" ref={statsRef}>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="50">0</div>
+            <div className="website-stat-number" data-target="1.2" data-decimals="1">0</div>
             <div className="website-stat-label">Billion+ Volume</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="2">0</div>
+            <div className="website-stat-number" data-target="53" data-suffix="M">0</div>
             <div className="website-stat-label">Million+ Users</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="200">0</div>
+            <div className="website-stat-number" data-target="41">0</div>
             <div className="website-stat-label">Countries</div>
           </div>
           <div className="website-stat-item">
-            <div className="website-stat-number" data-target="99">0</div>
+            <div className="website-stat-number" data-target="100" data-suffix="%">0</div>
             <div className="website-stat-label">% Uptime</div>
           </div>
         </div>

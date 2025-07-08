@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="website-footer-section">
             <div className="website-footer-logo">
               <TrendingUp className="website-logo-icon" />
-              <span className="website-logo-text">AxiPays</span>
+              <span className="website-logo-text">Bitqilo</span>
             </div>
             <p className="website-footer-description">
               The future of crypto trading. Secure, fast, and trusted by millions worldwide.
@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
 
         <div className="website-footer-bottom">
-          <p>&copy; 2024 AxiPays. All rights reserved.</p>
+          <p>&copy; 2024 Bitqilo. All rights reserved.</p>
           <p>Licensed and regulated financial services provider</p>
         </div>
       </div>

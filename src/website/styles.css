@@ -257,6 +257,7 @@ p {
   animation: fadeIn 1s ease-out;
   position: relative;
   z-index: 10;
+  padding-top: 20px;
 }
 
 .website-hero-description {
@@ -305,6 +306,8 @@ p {
   animation: fadeIn 1s ease-out 0.8s both;
   position: relative;
   z-index: 10;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .website-trading-card {
@@ -369,6 +372,9 @@ p {
   margin-bottom: clamp(16px, 3vw, 24px);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .website-chart-placeholder::before {
@@ -529,6 +535,7 @@ p {
   background: white;
   border-radius: 12px;
   padding: clamp(16px, 3vw, 24px);
+  
 }
 
 .website-tab-group {
@@ -621,6 +628,7 @@ p {
   background: white;
   border-radius: 12px;
   padding: clamp(16px, 3vw, 24px);
+  display: table;
 }
 
 .website-chart-header {
@@ -681,6 +689,7 @@ p {
 }
 
 .website-order-book h4 {
+  padding-top: 20px;
   margin-bottom: clamp(12px, 2vw, 16px);
   font-size: clamp(1rem, 2.5vw, 1.125rem);
 }
@@ -1628,6 +1637,15 @@ p {
   .website-trading-card {
     padding: clamp(12px, 2vw, 16px);
   }
+
+  .chart-stonks {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
   
   .website-security-card {
     padding: clamp(16px, 3vw, 20px);
@@ -1657,8 +1675,20 @@ p {
 }
 
 @media (max-width: 360px) {
+  .website-exchange-platform,
+  .website-platform-main {
+    display: block;
+    grid-template-columns: none !important;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 360px) {
   .website-hero-title {
     font-size: clamp(1.5rem, 5vw, 1.75rem);
+    padding-top: 20px;
   }
   
   .website-section-title {
@@ -1672,7 +1702,7 @@ p {
 
 @media (max-width: 270px) {
   .website-container {
-    padding: 0 8px;
+    padding: 10px 8px 0px 8px;
   }
   
   .website-hero {
@@ -1681,6 +1711,7 @@ p {
   
   .website-hero-title {
     font-size: 1.25rem;
+    padding-top: 20px;
   }
   
   .website-section-title {
@@ -1823,5 +1854,34 @@ p {
     background: none;
     color: #000000;
     -webkit-text-fill-color: unset;
+  }
+}
+
+/* cursor animation css */
+
+.website-platform-sidebar,
+.website-chart-section,
+.website-trading-panel {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.particle-container {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20;
+}
+.particle {
+  position: absolute;
+  pointer-events: none;
+  animation: emit 1s forwards;
+  will-change: transform, opacity;
+}
+.particle-fade {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+@keyframes emit {
+  to {
+    transform: translateY(-60px) scale(0.7) rotate(360deg);
+    opacity: 0;
   }
 }

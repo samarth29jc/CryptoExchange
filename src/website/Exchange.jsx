@@ -123,15 +123,15 @@ const Exchange = () => {
                 <div className="website-trade-inputs">
                   <div className="website-input-group">
                     <label>Amount</label>
-                    <input type="number" placeholder="0.00" />
+                    <input type="number" placeholder="0.00" readOnly />
                   </div>
                   <div className="website-input-group">
                     <label>Price</label>
-                    <input type="number" placeholder="42,850.00" />
+                    <input type="number" placeholder="42,850.00" readOnly/>
                   </div>
                   <div className="website-input-group">
                     <label>Total</label>
-                    <input type="number" placeholder="0.00" />
+                    <input type="number" placeholder="0.00" readOnly />
                   </div>
                 </div>
                 <button className="website-trade-execute">Place Buy Order</button>

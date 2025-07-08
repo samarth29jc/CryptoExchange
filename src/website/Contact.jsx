@@ -39,7 +39,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "support@axipays.com",
+      content: "support@bitqilo.com",
       description: "Get in touch via email"
     },
     {
