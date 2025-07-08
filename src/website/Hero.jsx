@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Shield, Zap, Globe } from 'lucide-react';
+import smallchart from "../../public/image.png"
 
 const Hero = () => {
   const statsRef = useRef(null);
@@ -74,7 +75,9 @@ const Hero = () => {
                   <span className="website-price">$42,850.00</span>
                   <span className="website-change website-positive">+5.2%</span>
                 </div>
-                <div className="website-chart-placeholder"></div>
+                <div className="website-chart-placeholder">
+                  <img src={smallchart} alt='chart image stonks' width={350} height={150} zoom="300"></img>
+                </div>
                 <div className="website-trading-actions">
                   <button className="website-trade-btn website-buy">Buy</button>
                   <button className="website-trade-btn website-sell">Sell</button>

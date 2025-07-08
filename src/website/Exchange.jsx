@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TrendingUp, TrendingDown, Activity } from 'lucide-react';
+import image from "../../public/chartImg.png"
 
 const Exchange = () => {
   const [activeTab, setActiveTab] = useState('spot');
@@ -76,19 +77,8 @@ const Exchange = () => {
                   <button className="website-chart-btn">1W</button>
                 </div>
               </div>
-              <div className="website-chart-container">
-                <video 
-                  className="website-chart-video"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-                  <source src="https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <img src={image} alt="chart image" className="website-chart-video" />
+              
             </div>
 
             <div className="website-trading-panel">

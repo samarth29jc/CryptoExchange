@@ -5,6 +5,7 @@ import Features from './Features';
 import Exchange from './Exchange';
 import Security from './Security';
 import Footer from './Footer';
+import Contact from './Contact';
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Features />
       <Exchange />
       <Security />
+      <Contact/>
       <Footer />
     </div>
   );

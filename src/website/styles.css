@@ -953,6 +953,302 @@ p {
   animation: pulse 2s infinite;
 }
 
+/* Contact Styles */
+.website-contact {
+  padding: clamp(60px, 10vw, 80px) 0;
+  background: white;
+}
+
+.website-contact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 250px), 1fr));
+  gap: clamp(16px, 3vw, 24px);
+  margin-bottom: clamp(48px, 8vw, 64px);
+}
+
+.website-contact-stat {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
+  padding: clamp(16px, 3vw, 24px);
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  transition: all 0.3s ease;
+}
+
+.website-contact-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.website-contact-stat-icon {
+  width: clamp(40px, 6vw, 48px);
+  height: clamp(40px, 6vw, 48px);
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.website-contact-stat-icon svg {
+  width: clamp(20px, 3vw, 24px);
+  height: clamp(20px, 3vw, 24px);
+  color: white;
+}
+
+.website-contact-stat-value {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: clamp(2px, 0.5vw, 4px);
+}
+
+.website-contact-stat-label {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.website-contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 64px);
+  align-items: flex-start;
+}
+
+.website-contact-info h3 {
+  margin-bottom: clamp(12px, 2vw, 16px);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: #1a1a1a;
+}
+
+.website-contact-info > p {
+  margin-bottom: clamp(24px, 4vw, 32px);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+}
+
+.website-contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 24px);
+  margin-bottom: clamp(32px, 6vw, 48px);
+}
+
+.website-contact-method {
+  display: flex;
+  gap: clamp(12px, 2vw, 16px);
+  align-items: flex-start;
+  padding: clamp(16px, 3vw, 20px);
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  transition: all 0.3s ease;
+}
+
+.website-contact-method:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.website-contact-method-icon {
+  width: clamp(40px, 6vw, 48px);
+  height: clamp(40px, 6vw, 48px);
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.website-contact-method-icon svg {
+  width: clamp(20px, 3vw, 24px);
+  height: clamp(20px, 3vw, 24px);
+  color: white;
+}
+
+.website-contact-method-content h4 {
+  margin-bottom: clamp(4px, 1vw, 6px);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: #1a1a1a;
+}
+
+.website-contact-method-value {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: clamp(2px, 0.5vw, 4px);
+}
+
+.website-contact-method-desc {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+}
+
+.website-contact-hours h4 {
+  margin-bottom: clamp(12px, 2vw, 16px);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: #1a1a1a;
+}
+
+.website-hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 12px);
+}
+
+.website-hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: 8px;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+}
+
+.website-hours-item span:first-child {
+  color: #6b7280;
+}
+
+.website-hours-item span:last-child {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.website-contact-form-container {
+  position: relative;
+}
+
+.website-contact-form-wrapper {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 32px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.website-contact-form-wrapper h3 {
+  margin-bottom: clamp(8px, 1.5vw, 12px);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: #1a1a1a;
+}
+
+.website-contact-form-wrapper > p {
+  margin-bottom: clamp(24px, 4vw, 32px);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: #6b7280;
+}
+
+.website-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 20px);
+}
+
+.website-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 2vw, 16px);
+}
+
+.website-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vw, 8px);
+}
+
+.website-form-group label {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 600;
+  color: #374151;
+}
+
+.website-form-group input,
+.website-form-group select,
+.website-form-group textarea {
+  padding: clamp(12px, 2vw, 16px);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
+}
+
+.website-form-group input:focus,
+.website-form-group select:focus,
+.website-form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.website-form-group textarea {
+  resize: vertical;
+  min-height: clamp(80px, 15vw, 120px);
+}
+
+.website-contact-submit {
+  padding: clamp(12px, 2vw, 16px) clamp(20px, 3vw, 24px);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.website-contact-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.website-contact-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.website-contact-submit.website-submitting {
+  background: #6b7280;
+}
+
+.website-contact-submit.website-submitted {
+  background: #10b981;
+}
+
+.website-submit-icon {
+  width: clamp(16px, 3vw, 20px);
+  height: clamp(16px, 3vw, 20px);
+  transition: all 0.3s ease;
+}
+
+.website-submit-spinner {
+  width: clamp(16px, 3vw, 20px);
+  height: clamp(16px, 3vw, 20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Footer Styles */
 .website-footer {
   background: #1a1a1a;
@@ -1114,6 +1410,10 @@ p {
   animation: slideIn 1s ease-out 0.6s both;
 }
 
+.website-home .website-contact {
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .website-container {
@@ -1143,6 +1443,11 @@ p {
     gap: clamp(32px, 6vw, 48px);
   }
   
+  .website-contact-content {
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 6vw, 48px);
+  }
+  
   .website-exchange-platform {
     grid-template-columns: 1fr;
     gap: clamp(20px, 3vw, 24px);
@@ -1165,6 +1470,11 @@ p {
   .website-features-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(20px, 3vw, 24px);
+  }
+  
+  .website-contact-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 3vw, 20px);
   }
 }
 
@@ -1221,6 +1531,16 @@ p {
     gap: clamp(16px, 3vw, 24px);
   }
   
+  .website-contact-stats {
+    grid-template-columns: 1fr;
+    gap: clamp(12px, 2vw, 16px);
+  }
+  
+  .website-form-row {
+    grid-template-columns: 1fr;
+    gap: clamp(12px, 2vw, 16px);
+  }
+  
   .website-footer-content {
     grid-template-columns: 1fr;
     gap: clamp(24px, 4vw, 32px);
@@ -1246,6 +1566,10 @@ p {
   }
   
   .website-features {
+    padding: clamp(40px, 8vw, 60px) 0;
+  }
+  
+  .website-contact {
     padding: clamp(40px, 8vw, 60px) 0;
   }
   
@@ -1311,6 +1635,10 @@ p {
   
   .website-feature-card {
     padding: clamp(16px, 3vw, 24px);
+  }
+  
+  .website-contact-form-wrapper {
+    padding: clamp(16px, 3vw, 20px);
   }
   
   .website-hero-actions {
@@ -1383,6 +1711,10 @@ p {
     padding: 12px;
   }
   
+  .website-contact-form-wrapper {
+    padding: 12px;
+  }
+  
   .website-exchange-platform {
     padding: 8px;
     gap: 8px;
@@ -1424,6 +1756,18 @@ p {
   .website-social-link svg {
     width: 14px;
     height: 14px;
+  }
+  
+  .website-contact-stats {
+    gap: 8px;
+  }
+  
+  .website-contact-stat {
+    padding: 12px;
+  }
+  
+  .website-contact-method {
+    padding: 12px;
   }
 }
 
