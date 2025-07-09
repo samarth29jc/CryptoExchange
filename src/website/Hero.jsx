@@ -80,15 +80,15 @@ const Hero = () => {
 
             <div className="website-hero-features">
               <div className="website-feature-item">
-                <Shield className="website-feature-icon" />
+               
                 <span>Bank-Grade Security</span>
               </div>
               <div className="website-feature-item">
-                <Zap className="website-feature-icon" />
+              
                 <span>Lightning Fast</span>
               </div>
               <div className="website-feature-item">
-                <Globe className="website-feature-icon" />
+               
                 <span>Global Access</span>
               </div>
             </div>
