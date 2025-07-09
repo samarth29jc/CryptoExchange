@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Shield, TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,8 +20,8 @@ const Header = () => {
       <div className="website-container">
         <div className="website-header-content">
           <div className="website-logo">
-            <TrendingUp className="website-logo-icon" />
-            <span className="website-logo-text">Bitqilo</span>
+            <img src="/customIcon.png" alt="Bitqilo Logo" className="website-logo-icon" />
+            <span className="website-logo-text" style={{ color: '#111' }}>Bitqilo</span>
           </div>
           
           <nav className={`website-nav ${isMenuOpen ? 'website-nav-open' : ''}`}>
@@ -31,8 +33,8 @@ const Header = () => {
           </nav>
 
           <div className="website-header-actions">
-            <button className="website-btn-secondary">Sign In</button>
-            <button className="website-btn-primary">Get Started</button>
+            <button className="website-btn-secondary" onClick={() => navigate('/auth')}>LogIn</button>
+            <button className="website-btn-primary" onClick={() => navigate('/auth')}>Get Started</button>
           </div>
 
           <button 
