@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -1625,8 +1630,6 @@ p {
 @media (max-width: 480px) {
   .website-container {
     padding: 0 clamp(8px, 2vw, 16px);
-    padding-left: 20px;
-    padding-right: 20px;
   }
   
   .website-hero {
@@ -1704,6 +1707,21 @@ p {
   .website-btn-outline {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .website-footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .website-footer-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-left: 0;
+    text-align: left;
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TrendingUp, Twitter, Linkedin, Github, Mail } from 'lucide-react';
+import { TrendingUp, Instagram, Linkedin, Facebook, Mail } from 'lucide-react';
 import { createPortal } from 'react-dom';
 
 const legalContent = {
@@ -44,9 +44,9 @@ const Footer = () => {
               The future of crypto trading. Secure, fast, and trusted by millions worldwide.
             </p>
             <div className="website-social-links">
-              <a href="#" className="website-social-link"><Twitter /></a>
+              <a href="#" className="website-social-link"><Instagram /></a>
               <a href="#" className="website-social-link"><Linkedin /></a>
-              <a href="#" className="website-social-link"><Github /></a>
+              <a href="#" className="website-social-link"><Facebook /></a>
               <a href="#" className="website-social-link"><Mail /></a>
             </div>
           </div>

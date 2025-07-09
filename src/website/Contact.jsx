@@ -20,6 +20,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormData({ name: '', email: '', subject: '', message: '' }); // Clear fields immediately
     setIsSubmitting(true);
     
     // Simulate form submission
