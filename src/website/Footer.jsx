@@ -37,8 +37,8 @@ const Footer = () => {
         <div className="website-footer-content">
           <div className="website-footer-section">
             <div className="website-footer-logo">
-              <TrendingUp className="website-logo-icon" />
-              <span className="website-logo-text">Bitqilo</span>
+              <img src="/customIcon.png" alt="Bitqilo Logo" className="website-logo-icon" />
+              <span className="website-logo-text" style={{ color: '#fff' }}>Bitqilo</span>
             </div>
             <p className="website-footer-description">
               The future of crypto trading. Secure, fast, and trusted by millions worldwide.
@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
 
         <div className="website-footer-bottom">
-          <p>&copy; 2024 Bitqilo. All rights reserved.</p>
+          <p>&copy; 2025 Bitqilo. All rights reserved.</p>
           <p>Licensed and regulated financial services provider</p>
         </div>
       </div>
