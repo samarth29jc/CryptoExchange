@@ -50,7 +50,7 @@ const Exchange = () => {
         <div className="website-section-header">
           <h2 className="website-section-title">Advanced Trading Platform</h2>
           <p className="website-section-subtitle">
-            Professional-grade tools for serious traders
+            Professional-grade tools for advanced traders
           </p>
         </div>
 
@@ -83,7 +83,7 @@ const Exchange = () => {
                 <div key={index} className="website-market-item">
                   <div className="website-market-info">
                     <span className="website-market-symbol">{crypto.symbol}</span>
-                    <span className="website-market-name">{crypto.name}</span>
+                    {/* <span className="website-market-name">{crypto.name}</span> */}
                   </div>
                   <div className="website-market-data">
                     <span className="website-market-price">${crypto.price}</span>

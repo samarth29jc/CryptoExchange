@@ -2,12 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Shield, Zap, Users, BarChart3, Lock, Smartphone } from 'lucide-react';
 
 const features = [
-  { icon: Shield, title: "Enterprise Security", description: "Military-grade encryption and multi-layer security protocols protect your digital assets 24/7." },
-  { icon: Zap, title: "Lightning Speed", description: "Execute trades in milliseconds with our advanced matching engine and global infrastructure." },
-  { icon: Users, title: "24/7 Support", description: "Get expert help whenever you need it with our round-the-clock customer support team." },
-  { icon: BarChart3, title: "Advanced Analytics", description: "Make informed decisions with real-time market data and professional trading tools." },
-  { icon: Lock, title: "Cold Storage", description: "Your funds are secured in offline cold storage with institutional-grade protection." },
-  { icon: Smartphone, title: "Mobile Trading", description: "Trade on the go with our feature-rich mobile app available on iOS and Android." }
+  { icon: Shield, title: "Trusted Security", description: "Trade in milliseconds with our high-performance matching engine and globally distributed infrastructure." },
+  { icon: Zap, title: "Instant Help", description: "Execute trades in milliseconds with our advanced matching engine and global infrastructure." },
+  { icon: Users, title: "24/7 Support", description:"Get instant help from our expert team — available 24/7 to resolve issues and answer your questions." },
+  { icon: BarChart3, title: "Advanced Analytics", description: "Stay ahead of the market with real-time data, smart insights, and powerful trading tools built for precision." },
+  { icon: Lock, title: "Cold Storage", description: "We store the majority of assets in secure, offline environments, using high-assurance security standards to ensure maximum protection from online threats." },
+  { icon: Smartphone, title: "All-in-One Access", description: "Your one-stop platform to explore, trade, and manage multiple cryptocurrencies with ease." }
 ];
 
 const Features = () => {
@@ -52,7 +52,7 @@ const Features = () => {
         <div className="website-section-header">
           <h2 className="website-section-title">Why Choose Bitqilo?</h2>
           <p className="website-section-subtitle">
-            Built for traders, by traders. Experience the difference with our cutting-edge platform.
+          Built by traders, for traders — experience the power of a platform crafted for performance, precision, and profit.
           </p>
         </div>
 

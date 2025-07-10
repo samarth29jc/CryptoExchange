@@ -62,6 +62,8 @@ const AuthPage = () => {
         )}
         {mode === 'signup' ? (
           <>
+            {/* Show whiteLogin.png logo on mobile when blue mountain is hidden */}
+            <img src="/whiteLogin.png" alt="Logo" className="auth-logo-mobile" />
             <form className="auth-form" onSubmit={handleSignup}>
               <h2 className="auth-form-title">Sign Up</h2>
               <input type="text" name="username" placeholder="Username" value={signupData.username} onChange={handleSignupChange} required />
@@ -73,9 +75,9 @@ const AuthPage = () => {
               </div>
               <button type="submit" className="auth-submit-btn">Create Account</button>
             </form>
-            <div className="auth-form-toggle">
-              <button className={mode === 'login' ? 'active' : ''} onClick={() => setMode('login')}>Log In</button>
-              <button className={mode === 'signup' ? 'active' : ''} onClick={() => setMode('signup')}>Sign Up</button>
+            <div className="auth-form-toggle-text">
+              Already have an account?{' '}
+              <span className="auth-toggle-link" onClick={() => setMode('login')}>Log in</span>
             </div>
           </>
         ) : (
@@ -88,9 +90,9 @@ const AuthPage = () => {
                 <button type="submit" className="auth-submit-btn">Log In</button>
               </form>
             )}
-            <div className="auth-form-toggle">
-              <button className={mode === 'login' ? 'active' : ''} onClick={() => setMode('login')}>Log In</button>
-              <button className={mode === 'signup' ? 'active' : ''} onClick={() => setMode('signup')}>Sign Up</button>
+            <div className="auth-form-toggle-text">
+              Don't have an account with Bitqilo?{' '}
+              <span className="auth-toggle-link" onClick={() => setMode('signup')}>Sign up</span>
             </div>
           </>
         )}

@@ -20,20 +20,23 @@ const Header = () => {
       <div className="website-container">
         <div className="website-header-content">
           <div className="website-logo">
-            <img src="/customIcon.png" alt="Bitqilo Logo" className="website-logo-icon" />
-            <span className="website-logo-text" style={{ color: '#111' }}>Bitqilo</span>
+            <img src="/whiteLogin.png" alt="Bitqilo Logo" className="website-logo-icon" style={{ width: '120px', height: 'auto' }} />
           </div>
           
           <nav className={`website-nav ${isMenuOpen ? 'website-nav-open' : ''}`}>
+            
             <a href="#home" className="website-nav-link">Home</a>
             <a href="#features" className="website-nav-link">Features</a>
             <a href="#exchange" className="website-nav-link">Exchange</a>
             <a href="#security" className="website-nav-link">Security</a>
             <a href="#contact" className="website-nav-link">Contact</a>
+            {isMenuOpen && (
+              <button className="website-btn-primary website-nav-mobile-btn" onClick={() => { setIsMenuOpen(false); navigate('/auth'); }}>Get Started</button>
+            )}
           </nav>
 
-          <div className="website-header-actions">
-            <button className="website-btn-secondary" onClick={() => navigate('/auth')}>LogIn</button>
+          <div className="website-header-actions" style={{ display: isMenuOpen ? 'none' : undefined }}>
+            
             <button className="website-btn-primary" onClick={() => navigate('/auth')}>Get Started</button>
           </div>
 

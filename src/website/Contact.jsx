@@ -72,7 +72,7 @@ const Contact = () => {
             Get in <span className="website-gradient-text">Touch</span>
           </h2>
           <p className="website-section-subtitle">
-            Have questions? We're here to help. Reach out to our team and we'll get back to you as soon as possible.
+          Site in Progress- Exciting new features are on the way. Need help in the meantime?
           </p>
         </div>
 
@@ -92,7 +92,7 @@ const Contact = () => {
 
         <div className="website-contact-content">
           <div className="website-contact-info">
-            <h3>Let's Start a Conversation</h3>
+            <h2>Let's Start a <span className="gradient-text-contact">Conversation</span></h2>
             <p>
               Whether you're a new trader looking to get started or an experienced investor 
               seeking advanced features, our team is ready to assist you.
@@ -117,7 +117,7 @@ const Contact = () => {
 
           <div className="website-contact-form-container">
             <div className="website-contact-form-wrapper">
-              <h3>Send us a Message</h3>
+              <h3>Send us a <span className="gradient-text-contact">Message</span></h3>
               <p>Fill out the form below and we'll get back to you within 24 hours.</p>
 
               <form onSubmit={handleSubmit} className="website-contact-form">

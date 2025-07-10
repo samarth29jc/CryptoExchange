@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Shield, Zap, Globe } from 'lucide-react';
 import smallchart from "../../public/image.png"
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const statsRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // for animation of counting
@@ -71,14 +73,24 @@ const Hero = () => {
             </p>
             
             <div className="website-hero-actions">
-              <button className="website-btn-primary website-btn-large">
+              <button className="website-btn-primary website-btn-large" onClick={() => navigate('/auth')}>
                 Start Trading
                 <ArrowRight className="website-btn-icon" />
               </button>
-              <button className="website-btn-outline">Learn More</button>
+              <button
+                className="website-btn-outline"
+                onClick={() => {
+                  const featuresSection = document.getElementById('features');
+                  if (featuresSection) {
+                    featuresSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Learn More
+              </button>
             </div>
 
-            <div className="website-hero-features">
+            {/* <div className="website-hero-features">
               <div className="website-feature-item">
                
                 <span>Bank-Grade Security</span>
@@ -91,7 +103,7 @@ const Hero = () => {
                
                 <span>Global Access</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="website-hero-visual">
@@ -117,26 +129,71 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="website-hero-stats" ref={statsRef}>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="1.2" data-decimals="1">0</div>
-            <div className="website-stat-label">Billion+ Volume</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="53" data-suffix="K">0</div>
-            <div className="website-stat-label">Thousand+ Users</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="59">0</div>
-            <div className="website-stat-label">Countries</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="99" data-suffix="%">0</div>
-            <div className="website-stat-label">% Uptime</div>
-          </div>
-        </div>
+        {/* Replace .website-hero-stats with TradingViewWidget */}
+        <TradingViewWidget />
       </div>
     </section>
+  );
+};
+
+const TradingViewWidget = () => {
+  const container = useRef();
+
+  useEffect(() => {
+    // Clear previous widget if any
+    if (container.current) {
+      container.current.innerHTML = "";
+    }
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    script.type = "text/javascript";
+    script.async = true;
+    script.innerHTML = `
+      {
+        "symbols": [
+          {
+            "proName": "FOREXCOM:SPXUSD",
+            "title": "S&P 500 Index"
+          },
+          {
+            "proName": "FOREXCOM:NSXUSD",
+            "title": "US 100 Cash CFD"
+          },
+          {
+            "proName": "FX_IDC:EURUSD",
+            "title": "EUR to USD"
+          },
+          {
+            "proName": "BITSTAMP:BTCUSD",
+            "title": "Bitcoin"
+          },
+          {
+            "proName": "BITSTAMP:ETHUSD",
+            "title": "Ethereum"
+          }
+        ],
+        "colorTheme": "light",
+        "locale": "en",
+        "largeChartUrl": "true",
+        "isTransparent": true,
+        "showSymbolLogo": true,
+        "displayMode": "compact"
+      }`;
+    if (container.current) {
+      container.current.appendChild(script);
+    }
+    // Cleanup on unmount
+    return () => {
+      if (container.current) {
+        container.current.innerHTML = "";
+      }
+    };
+  }, []);
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"></a>
+    </div>
   );
 };
 
