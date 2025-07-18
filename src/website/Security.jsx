@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Shield, Lock, Eye, Users, Award, CheckCircle } from 'lucide-react';
+import { Shield, Lock, Eye, Users, Award} from 'lucide-react';
 
 // SVGs for Bitcoin, Ethereum, and Solana
 // const BitcoinSVG = () => (
@@ -117,7 +117,7 @@ const Security = () => {
               ))}
             </div>
 
-            <div className="website-certifications">
+            {/* <div className="website-certifications">
               <h4>Industry Certifications</h4>
               <div className="website-certification-list">
                 {certifications.map((cert, index) => (
@@ -127,7 +127,7 @@ const Security = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="website-security-visual">

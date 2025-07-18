@@ -3,10 +3,10 @@ import { TrendingUp, Instagram, Linkedin, Facebook, Mail } from 'lucide-react';
 import { createPortal } from 'react-dom';
 
 const legalContent = {
-  'Terms of Service': 'These are the Terms of Service for using Bitqilo. By accessing or using our platform, you agree to abide by all terms and conditions set forth herein.',
-  'Privacy Policy': 'Our Privacy Policy explains how we collect, use, and protect your personal information when you use Bitqilo.',
-  'Cookie Policy': 'The Cookie Policy describes how and why we use cookies and similar technologies on Bitqilo.',
-  'Compliance': 'Bitqilo is committed to regulatory compliance and upholding the highest standards of security and transparency.'
+  'Terms of Service': 'These are the Terms of Service for using Krypttos. By accessing or using our platform, you agree to abide by all terms and conditions set forth herein.',
+  'Privacy Policy': 'Our Privacy Policy explains how we collect, use, and protect your personal information when you use Krypttos.',
+  'Cookie Policy': 'The Cookie Policy describes how and why we use cookies and similar technologies on Krypttos.',
+  'Compliance': 'Krypttos is committed to regulatory compliance and upholding the highest standards of security and transparency.'
 };
 
 function LegalModal({ open, onClose, title, content }) {
@@ -61,16 +61,17 @@ const Footer = () => {
         <div className="website-footer-content">
           <div className="website-footer-section">
             <div className="website-footer-logo">
-              <img src="/mountainLogin.png" alt="Bitqilo Logo" className="website-logo-icon" style={{ width: '120px', height: 'auto' }} />
+              <img src="/mountainLogin.webp" alt="Krypttos Logo" className="website-logo-icon" style={{ width: '120px', height: 'auto' }} />
             </div>
             <p className="website-footer-description">
-              The future of crypto trading. Secure, fast, and trusted by millions worldwide.
+               Fundex Pay LLC is a legally registered private limited company under the laws of the Republic of Poland. The company is officially authorized and registered as a Virtual Asset Service Provider (VASP) in accordance with Polish anti-money laundering (AML) and counter-terrorism financing (CTF) regulations. Fundex Pay LLC is permitted to provide virtual asset-related services, including cryptocurrency exchange and wallet services, in full compliance with national and EU regulatory standards. 
+               <br></br>The company maintains its registered business addresses at Piotrkowska Street 148/150 and Stanisława Przybyszewskiego Street 91–99, Łódź, 90-063 and 93-126, Poland.
             </p>
             <div className="website-social-links">
               <a href="https://instagram.com" className="website-social-link" target="_blank" rel="noopener noreferrer"><Instagram /></a>
               <a href="https://linkedin.com" className="website-social-link" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
               <a href="https://facebook.com" className="website-social-link" target="_blank" rel="noopener noreferrer"><Facebook /></a>
-              <a href="mailto:support@bitqilo.com" className="website-social-link"><Mail /></a>
+              <a href="mailto:support@krypttos.com" className="website-social-link"><Mail /></a>
             </div>
           </div>
 
@@ -78,6 +79,7 @@ const Footer = () => {
             <div className="website-footer-section">
               <h4>Company</h4>
               <ul>
+              <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#exchange">Exchange</a></li>
                 <li><a href="#security">Security</a></li>
@@ -105,8 +107,8 @@ const Footer = () => {
         </div>
 
         <div className="website-footer-bottom">
-          <p style={{fontSize:'1vw'}}>&copy; 2025 Bitqilo. All rights reserved.</p>
-          <p style={{fontSize:'1vw'}}>Licensed and regulated financial services provider</p>
+          <p style={{fontSize:'1vw'}}>&copy; 2025 Krypttos. All rights reserved.</p>
+          <p style={{fontSize:'1vw'}}>The future of crypto trading. Secure, fast, and trusted by millions worldwide.</p>
         </div>
       </div>
       <LegalModal open={modal.open} onClose={closeModal} title={modal.title} content={modal.content} />

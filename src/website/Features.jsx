@@ -1,13 +1,37 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Shield, Zap, Users, BarChart3, Lock, Smartphone } from 'lucide-react';
+import { Shield, Zap, Users, BarChart3, CheckCircle, AlertTriangle } from 'lucide-react';
 
 const features = [
-  { icon: Shield, title: "Trusted Security", description: "Trade in milliseconds with our high-performance matching engine and globally distributed infrastructure." },
-  { icon: Zap, title: "Instant Help", description: "Execute trades in milliseconds with our advanced matching engine and global infrastructure." },
-  { icon: Users, title: "24/7 Support", description:"Get instant help from our expert team — available 24/7 to resolve issues and answer your questions." },
-  { icon: BarChart3, title: "Advanced Analytics", description: "Stay ahead of the market with real-time data, smart insights, and powerful trading tools built for precision." },
-  { icon: Lock, title: "Cold Storage", description: "We store the majority of assets in secure, offline environments, using high-assurance security standards to ensure maximum protection from online threats." },
-  { icon: Smartphone, title: "All-in-One Access", description: "Your one-stop platform to explore, trade, and manage multiple cryptocurrencies with ease." }
+  {
+    icon: Users,
+    title: "Accessibility",
+    description: "Easily start investing with no prior crypto knowledge. Designed to remove barriers and make crypto trading accessible to everyone."
+  },
+  {
+    icon: Zap,
+    title: "Fully Automated",
+    description: "Enjoy fast, secure, and efficient trading with a fully automated system that reduces manual work and minimizes risks."
+  },
+  {
+    icon: AlertTriangle,
+    title: "Risk Management",
+    description: "Advanced risk controls help protect your investments and improve decision-making for more consistent, long-term gains."
+  },
+  {
+    icon: BarChart3,
+    title: "Only Pay for Profits",
+    description: "No upfront fees—only pay when your AI trading agents generate actual profits for your account."
+  },
+  {
+    icon: Shield,
+    title: "Security",
+    description: "Your funds never leave your exchange. Trade securely through encrypted API connections while maintaining full control."
+  },
+  {
+    icon: CheckCircle,
+    title: "Security Audit Completed",
+    description: "Externally audited to confirm strong security, system reliability, and a trustworthy user experience for all investors."
+  }
 ];
 
 const Features = () => {
@@ -50,7 +74,7 @@ const Features = () => {
     >
       <div className="website-container">
         <div className="website-section-header">
-          <h2 className="website-section-title">Why Choose Bitqilo?</h2>
+          <h2 className="website-section-title">Why Choose Krypttos?</h2>
           <p className="website-section-subtitle">
           Built by traders, for traders — experience the power of a platform crafted for performance, precision, and profit.
           </p>
