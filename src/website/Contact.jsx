@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Users, MessageSquare } from 'lucide-react';
+import { Mail, Send, CheckCircle, Clock, Users, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,13 +22,13 @@ const Contact = () => {
     e.preventDefault();
     setFormData({ name: '', email: '', subject: '', message: '' }); // Clear fields immediately
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
@@ -40,20 +40,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "support@bitqilo.com",
+      content: "support@krypttos.com",
       description: "Get in touch via email"
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      content: "+1 (555) 123-4567",
-      description: "24/7 customer support"
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      content: "123 Crypto Street, Digital City",
-      description: "Our headquarters"
     }
   ];
 
@@ -72,7 +60,7 @@ const Contact = () => {
             Get in <span className="website-gradient-text">Touch</span>
           </h2>
           <p className="website-section-subtitle">
-            Have questions? We're here to help. Reach out to our team and we'll get back to you as soon as possible.
+            Have a question, feedback, or need assistance? We’re just a message away.
           </p>
         </div>
 
@@ -92,9 +80,9 @@ const Contact = () => {
 
         <div className="website-contact-content">
           <div className="website-contact-info">
-            <h3>Let's Start a Conversation</h3>
+            <h2>Let's Start a <span className="gradient-text-contact">Conversation</span></h2>
             <p>
-              Whether you're a new trader looking to get started or an experienced investor 
+              Whether you're a new trader looking to get started or an experienced investor
               seeking advanced features, our team is ready to assist you.
             </p>
 
@@ -117,7 +105,7 @@ const Contact = () => {
 
           <div className="website-contact-form-container">
             <div className="website-contact-form-wrapper">
-              <h3>Send us a Message</h3>
+              <h3>Send us a <span className="gradient-text-contact">Message</span></h3>
               <p>Fill out the form below and we'll get back to you within 24 hours.</p>
 
               <form onSubmit={handleSubmit} className="website-contact-form">
@@ -180,8 +168,8 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className={`website-contact-submit ${isSubmitting ? 'website-submitting' : ''} ${isSubmitted ? 'website-submitted' : ''}`}
                   disabled={isSubmitting || isSubmitted}
                 >

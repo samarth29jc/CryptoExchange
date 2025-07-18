@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Shield, Zap, Globe } from 'lucide-react';
-import smallchart from "../../public/image.png"
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const statsRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // for animation of counting
@@ -54,6 +55,154 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Inline TradingViewWidget implementation (React way)
+  const tradingViewRef = useRef();
+  useEffect(() => {
+    const container = tradingViewRef.current;
+    if (!container) return;
+
+    // Clear container to prevent script duplication
+    container.innerHTML = '';
+
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    script.type = "text/javascript";
+    script.async = true;
+    script.innerHTML = `
+      {
+        "symbols": [
+          { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+          { "proName": "BITSTAMP:ETHUSD", "title": "Ethereum" },
+          { "proName": "XETR:POLY", "title": "polygoan" },
+          { "proName": "CRYPTOCAP:DOGE", "title": "dogecoin" },
+          { "proName": "TRADENATION:SOLANA", "title": "solana" },
+          { "proName": "CRYPTOCAP:BNB", "title": "BNB" },
+          { "proName": "CRYPTOCAP:XRP", "title": "XRP" },
+          { "proName": "TRADENATION:TRONUSD", "title": "TRON" }
+        ],
+        "colorTheme": "light",
+        "locale": "en",
+        "largeChartUrl": "",
+        "isTransparent": false,
+        "showSymbolLogo": true,
+        "displayMode": "compact"
+      }`;
+    
+    // The TradingView script populates the container, so we just append it
+    container.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+        if (container) {
+            container.innerHTML = '';
+        }
+    };
+}, []);
+
+  // Ref for TradingView Market Overview widget
+  const marketOverviewRef = useRef();
+  useEffect(() => {
+    const container = marketOverviewRef.current;
+    if (!container) return;
+    container.innerHTML = `
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+    `;
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
+    script.innerHTML = `{
+      "title": "Cryptocurrencies",
+      "title_raw": "Cryptocurrencies",
+      "tabs": [
+        {
+          "title": "Overview",
+          "title_raw": "Overview",
+          "symbols": [
+            { "s": "CRYPTOCAP:TOTAL" },
+            { "s": "BITSTAMP:BTCUSD" },
+            { "s": "BITSTAMP:ETHUSD" },
+            { "s": "COINBASE:SOLUSD" },
+            { "s": "BINANCE:AVAXUSD" },
+            { "s": "COINBASE:UNIUSD" }
+          ],
+          "quick_link": { "title": "More cryptocurrencies", "href": "/markets/cryptocurrencies/prices-all/" }
+        },
+        {
+          "title": "Bitcoin",
+          "title_raw": "Bitcoin",
+          "symbols": [
+            { "s": "BITSTAMP:BTCUSD" },
+            { "s": "COINBASE:BTCEUR" },
+            { "s": "COINBASE:BTCGBP" },
+            { "s": "BITFLYER:BTCJPY" },
+            { "s": "BMFBOVESPA:BIT1!" }
+          ],
+          "quick_link": { "title": "More Bitcoin pairs", "href": "/symbols/BTCUSD/markets/" }
+        },
+        {
+          "title": "Ethereum",
+          "title_raw": "Ethereum",
+          "symbols": [
+            { "s": "BITSTAMP:ETHUSD" },
+            { "s": "KRAKEN:ETHEUR" },
+            { "s": "COINBASE:ETHGBP" },
+            { "s": "BITFLYER:ETHJPY" },
+            { "s": "BINANCE:ETHBTC" },
+            { "s": "BINANCE:ETHUSDT" }
+          ],
+          "quick_link": { "title": "More Ethereum pairs", "href": "/symbols/ETHUSD/markets/" }
+        },
+        {
+          "title": "Solana",
+          "title_raw": "Solana",
+          "symbols": [
+            { "s": "COINBASE:SOLUSD" },
+            { "s": "BINANCE:SOLEUR" },
+            { "s": "COINBASE:SOLGBP" },
+            { "s": "BINANCE:SOLBTC" },
+            { "s": "COINBASE:SOLETH" },
+            { "s": "BINANCE:SOLUSDT" }
+          ],
+          "quick_link": { "title": "More Solana pairs", "href": "/symbols/SOLUSD/markets/" }
+        },
+        {
+          "title": "Uniswap",
+          "title_raw": "Uniswap",
+          "symbols": [
+            { "s": "COINBASE:UNIUSD" },
+            { "s": "KRAKEN:UNIEUR" },
+            { "s": "COINBASE:UNIGBP" },
+            { "s": "BINANCE:UNIBTC" },
+            { "s": "KRAKEN:UNIETH" },
+            { "s": "BINANCE:UNIUSDT" }
+          ],
+          "quick_link": { "title": "More Uniswap pairs", "href": "/symbols/UNIUSD/markets/" }
+        }
+      ],
+      "title_link": "/markets/cryptocurrencies/prices-all/",
+      "width": "100%",
+      "height": "100%",
+      "showChart": true,
+      "showFloatingTooltip": false,
+      "locale": "en",
+      "plotLineColorGrowing": "#2962FF",
+      "plotLineColorFalling": "#2962FF",
+      "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+      "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+      "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+      "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+      "gridLineColor": "rgba(240, 243, 250, 0)",
+      "scaleFontColor": "rgba(120, 123, 134, 1)",
+      "showSymbolLogo": true,
+      "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+      "colorTheme": "light"
+    }`;
+    container.querySelector('.tradingview-widget-container__widget').appendChild(script);
+    return () => { container.innerHTML = ''; };
+  }, []);
+
   return (
     <section id="home" className="website-hero">
       <div className="website-container">
@@ -66,19 +215,29 @@ const Hero = () => {
               Starts Here
             </h1>
             <p className="website-hero-description">
-              Experience next-generation crypto trading with Bitqilo. 
+              Experience next-generation crypto trading with Krypttos. 
               Secure, fast, and intuitive platform trusted by millions of traders worldwide.
             </p>
             
             <div className="website-hero-actions">
-              <button className="website-btn-primary website-btn-large">
+              <button className="website-btn-primary website-btn-large" onClick={() => navigate('/auth')}>
                 Start Trading
                 <ArrowRight className="website-btn-icon" />
               </button>
-              <button className="website-btn-outline">Learn More</button>
+              <button
+                className="website-btn-outline"
+                onClick={() => {
+                  const featuresSection = document.getElementById('features');
+                  if (featuresSection) {
+                    featuresSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Learn More
+              </button>
             </div>
 
-            <div className="website-hero-features">
+            {/* <div className="website-hero-features">
               <div className="website-feature-item">
                
                 <span>Bank-Grade Security</span>
@@ -91,7 +250,7 @@ const Hero = () => {
                
                 <span>Global Access</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="website-hero-visual">
@@ -101,12 +260,16 @@ const Hero = () => {
                 <div className="website-status-indicator"></div>
               </div>
               <div className="website-trading-content">
-                <div className="website-price-display">
-                  <span className="website-price">$42,850.00</span>
-                  <span className="website-change website-positive">+5.2%</span>
-                </div>
+                {/* <div className="website-price-display"> */}
+                  {/* <span className="website-price">$42,850.00</span>
+                  <span className="website-change website-positive">+5.2%</span> */}
+                {/* </div> */}
                 <div className="website-chart-placeholder">
-                  <img className="chart-stonks" src={smallchart} alt='chart image stonks' width={350}></img>
+                  {/* TradingView Market Overview Widget */}
+                  <div
+                    className="tradingview-widget-container tv-embed-widget-wrapper__body js-embed-widget-body"
+                    ref={marketOverviewRef}
+                  ></div>
                 </div>
                 <div className="website-trading-actions">
                   <button className="website-trade-btn website-buy">Buy</button>
@@ -117,23 +280,10 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="website-hero-stats" ref={statsRef}>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="1.2" data-decimals="1">0</div>
-            <div className="website-stat-label">Billion+ Volume</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="53" data-suffix="K">0</div>
-            <div className="website-stat-label">Thousand+ Users</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="59">0</div>
-            <div className="website-stat-label">Countries</div>
-          </div>
-          <div className="website-stat-item">
-            <div className="website-stat-number" data-target="99" data-suffix="%">0</div>
-            <div className="website-stat-label">% Uptime</div>
-          </div>
+        {/* TradingView Widget */}
+        <div className="tradingview-widget-container" ref={tradingViewRef}>
+          <div className="tradingview-widget-container__widget"></div>
+          <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span className="blue-text"></span></a></div>
         </div>
       </div>
     </section>

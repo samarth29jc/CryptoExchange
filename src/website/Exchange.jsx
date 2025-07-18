@@ -1,21 +1,122 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { TrendingUp, TrendingDown, Activity } from 'lucide-react';
-import image from "../../public/chartImg.png"
+import { TrendingUp, TrendingDown} from 'lucide-react';
+import image from "../../public/chartImg.webp"
+
+const getRandom = (base, minDelta, maxDelta, decimals = 3) => {
+  const delta = Math.random() * (maxDelta - minDelta) + minDelta;
+  return (base + delta).toFixed(decimals);
+};
+
+const initialOrderBook = [
+  { type: 'sell', price: 42880, amount: 0.125 },
+  { type: 'sell', price: 42875, amount: 0.234 },
+  { type: 'buy', price: 42850, amount: 0.456 },
+  { type: 'buy', price: 42845, amount: 0.789 },
+];
+
+const symbols = [
+  { symbol: 'BTC', stream: 'btcusdt', name: 'Bitcoin' },
+  { symbol: 'ETH', stream: 'ethusdt', name: 'Ethereum' },
+  { symbol: 'ADA', stream: 'adausdt', name: 'Cardano' },
+  { symbol: 'DOT', stream: 'dotusdt', name: 'Polkadot' },
+  { symbol: 'SOL', stream: 'solusdt', name: 'Solana' },
+  { symbol: 'DOGE', stream: 'dogeusdt', name: 'Dogecoin' },
+  { symbol: 'BNB', stream: 'bnbusdt', name: 'Binance Coin' },
+];
+
+const symbolIcons = {
+  BTC: '/color/btc.svg',
+  ETH: '/color/eth.svg',
+  ADA: '/color/ada.svg',
+  DOT: '/color/dot.svg',
+  SOL: '/color/sol.svg',
+  DOGE: '/color/doge.svg',
+  BNB: '/color/bnb.svg',
+};
 
 const Exchange = () => {
   const sectionRef = useRef();
   const [visible, setVisible] = useState(false);
   const [colVisible, setColVisible] = useState([false, false]);
-
   const [activeTab, setActiveTab] = useState('spot');
 
-  const cryptoData = [
-    { symbol: 'BTC', name: 'Bitcoin', price: '42,850.00', change: '+5.2%', volume: '1.2B', positive: true },
-    { symbol: 'ETH', name: 'Ethereum', price: '3,245.80', change: '+3.8%', volume: '800M', positive: true },
-    { symbol: 'ADA', name: 'Cardano', price: '1.23', change: '-2.1%', volume: '450M', positive: false },
-    { symbol: 'DOT', name: 'Polkadot', price: '28.90', change: '+1.5%', volume: '320M', positive: true },
-    { symbol: 'SOL', name: 'Solana', price: '158.40', change: '+8.2%', volume: '680M', positive: true },
-  ];
+  // Dynamic order book state
+  const [orderBook, setOrderBook] = useState(initialOrderBook);
+
+  // Live crypto data state
+  const [cryptoData, setCryptoData] = useState(symbols.map(s => ({
+    symbol: s.symbol,
+    name: s.name,
+    price: '0.00',
+    change: '0.0%',
+    positive: true,
+  })));
+
+  useEffect(() => {
+    const streams = symbols.map(s => `${s.stream}@ticker`).join('/');
+    const ws = new window.WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      const ticker = data.data;
+      setCryptoData(prev =>
+        prev.map(coin =>
+          coin.symbol === ticker.s.replace('USDT', '')
+            ? {
+                ...coin,
+                price: parseFloat(ticker.c).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+                change: `${parseFloat(ticker.P).toFixed(2)}%`,
+                positive: parseFloat(ticker.P) >= 0,
+              }
+            : coin
+        )
+      );
+    };
+
+    return () => ws.close();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOrderBook(prev => prev.map((item, idx) => {
+        // Randomly add/subtract up to 10 from price, 0.01 from amount
+        const price = parseFloat(getRandom(item.price, -10, 10, 2));
+        const amount = parseFloat(getRandom(item.amount, -0.01, 0.01, 3));
+        return {
+          ...item,
+          price: price > 0 ? price : item.price,
+          amount: amount > 0 ? amount : item.amount,
+        };
+      }));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const screenerRef = useRef();
+  useEffect(() => {
+    const container = screenerRef.current;
+    if (!container) return;
+    container.innerHTML = `
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+    `;
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-screener.js";
+    script.type = "text/javascript";
+    script.async = true;
+    script.innerHTML = `{
+      "defaultColumn": "overview",
+      "screener_type": "crypto_mkt",
+      "displayCurrency": "USD",
+      "colorTheme": "light",
+      "isTransparent": false,
+      "locale": "en",
+      "width": "100%",
+      "height": 550
+    }`;
+    container.querySelector('.tradingview-widget-container__widget').appendChild(script);
+    return () => { container.innerHTML = ''; };
+  }, []);
 
   useEffect(() => {
     const observer = new window.IntersectionObserver(
@@ -50,7 +151,7 @@ const Exchange = () => {
         <div className="website-section-header">
           <h2 className="website-section-title">Advanced Trading Platform</h2>
           <p className="website-section-subtitle">
-            Professional-grade tools for serious traders
+            Professional-grade tools for advanced traders
           </p>
         </div>
 
@@ -64,12 +165,14 @@ const Exchange = () => {
                 Spot Trading
               </button>
               <button 
+              disabled="true"
                 className={`website-tab ${activeTab === 'futures' ? 'website-active' : ''}`}
                 onClick={() => setActiveTab('futures')}
               >
                 Futures
               </button>
               <button 
+                disabled="true"
                 className={`website-tab ${activeTab === 'options' ? 'website-active' : ''}`}
                 onClick={() => setActiveTab('options')}
               >
@@ -82,8 +185,8 @@ const Exchange = () => {
               {cryptoData.map((crypto, index) => (
                 <div key={index} className="website-market-item">
                   <div className="website-market-info">
+                    <img src={symbolIcons[crypto.symbol]} alt={crypto.symbol + ' logo'} style={{ width: 24, height: 24, marginRight: 8, verticalAlign: 'middle' }} />
                     <span className="website-market-symbol">{crypto.symbol}</span>
-                    <span className="website-market-name">{crypto.name}</span>
                   </div>
                   <div className="website-market-data">
                     <span className="website-market-price">${crypto.price}</span>
@@ -100,15 +203,14 @@ const Exchange = () => {
           <div className={`website-platform-main section-fade-in${colVisible[1] ? ' visible' : ''}`}>
             <div className="website-chart-section">
               <div className="website-chart-header">
-                <h3>BTC/USD</h3>
-                <div className="website-chart-controls">
+                <h3>CRYPTO/USD</h3>
+                 {/* <div className="website-chart-controls">
                   <button className="website-chart-btn website-active">1H</button>
                   <button className="website-chart-btn">4H</button>
                   <button className="website-chart-btn">1D</button>
-                  <button className="website-chart-btn">1W</button>
-                </div>
+                </div>  */}
               </div>
-              <img src={image} alt="chart image" className="website-chart-video" />
+              <div className="tradingview-widget-container" ref={screenerRef}></div>
               
             </div>
 
@@ -122,26 +224,13 @@ const Exchange = () => {
                     <span>Total</span>
                   </div>
                   <div className="website-order-book-data">
-                    <div className="website-order-item website-sell">
-                      <span>42,880</span>
-                      <span>0.125</span>
-                      <span>5,360</span>
-                    </div>
-                    <div className="website-order-item website-sell">
-                      <span>42,875</span>
-                      <span>0.234</span>
-                      <span>10,032</span>
-                    </div>
-                    <div className="website-order-item website-buy">
-                      <span>42,850</span>
-                      <span>0.456</span>
-                      <span>19,540</span>
-                    </div>
-                    <div className="website-order-item website-buy">
-                      <span>42,845</span>
-                      <span>0.789</span>
-                      <span>33,825</span>
-                    </div>
+                    {orderBook.map((item, idx) => (
+                      <div key={idx} className={`website-order-item website-${item.type}`}>
+                        <span>{item.price}</span>
+                        <span>{item.amount}</span>
+                        <span>{(item.price * item.amount).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
